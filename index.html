@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <script src="https://pixijs.download/release/pixi.min.js"></script>
+    <script src="https://unpkg.com/@pixi/sound/dist/pixi-sound.js"></script>
+</head>
+
+<body>
+    <script>
+        // Create the application helper and add its render target to the page
+        let app = new PIXI.Application({
+            width: 800,
+            height: 800
+        });
+        document.body.appendChild(app.view);
+
+        quotes = [
+            'Láska je borůvkové smoothie z dobře promazaného mixéru. Láska je borůvkové smoothie z dobře promazaného mixéru. Láska je borůvkové smoothie z dobře promazaného mixéru.',
+            'Láska je úděl tvůj.',
+            'Láska je tu s námi, buďme s ňou.'
+        ];
+
+        const music = PIXI.sound.Sound.from('assets/music/mixkit-forest-birds-chirp-ambiance-69.ogg');
+        music.loop = true;
+        music.play();
+
+        let background = PIXI.Sprite.from('assets/backgrounds/forest_upscale.jpg')
+        app.stage.addChild(background);
+
+        // Create the sprite and add it to the stage
+        let button = PIXI.Sprite.from('assets/buttons/button-co-je-to-laska.png');
+        button.x = 250;
+        button.y = 600;
+        button.interactive = true;
+        app.stage.addChild(button);
+
+        let text = new PIXI.Text('Kdo ví?', {
+            fontFamily : 'Georgia', 
+            fontSize: 24,
+            fontStyle: 'italic',
+            fill : 0x000000, 
+            align : 'center',
+            wordWrap: true,
+            wordWrapWidth: 600,
+        });
+        text.anchor.set(0.5, 0.5);
+        text.position.set(400, 400);
+
+        button.on('pointerover', (event) => { 
+            button.tint = 0xDDDDDD;
+        });
+
+        button.on('pointerout', (event) => { 
+            button.tint = 0xFFFFFF;
+        });
+
+        button.on('pointerdown',(event) => { 
+            text.text = quotes[Math.floor(Math.random() * quotes.length)];
+            textBG.width = text.width + 20,
+            textBG.height = text.height + 10;
+        });
+
+        const textBG = new PIXI.Sprite(PIXI.Texture.WHITE);
+        textBG.width = text.width + 20,
+        textBG.height = text.height + 10;
+        textBG.anchor.set(0.5, 0.5);
+        textBG.position.set(400, 400);
+
+        app.stage.addChild(textBG);
+        app.stage.addChild(text);
+        
+
+
+
+    </script>
+</body>
+
+</html>
