@@ -5,70 +5,153 @@
     <meta charset="utf-8" />
     <script src="https://pixijs.download/release/pixi.min.js"></script>
     <script src="https://unpkg.com/@pixi/sound/dist/pixi-sound.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
 </head>
 
 <body>
     <script>
+        WebFont.load({
+            google: {
+                families: ['VT323']
+            }
+        });
+
+        quotes = [
+            'Vplynutí jeden do druhého. Není jenom jeden a druhý — něco začne eistovat a je to jenom vaše a víte o tom jenom vy dva. Láska je Vennův diagram...přijetí navzdory.',
+            'Přizpůsobení se dvou lidí navzájem v komfortní symbióze. Spokojenost ve sladění, zájem.',
+            'Láska je vzťah samého so sebou — pocit sebprijatia. Keď si vyriešiš seba môžeš to šíriť ďalej.',
+            'Láska je neustálá tendence kosmu porozumět si a být jedno.',
+            'Láska je něco, co přichází s časem. Hodně lidí si to plete se zamilovaností — láska je to, co zůstane. Je to souznění v různorodosti a společný růst.',
+            'Když to vydržíš do konce.',
+            'Netuším, taky bych to chtěla vědět.',
+            'Bezpodmínečné přijetí a vzájemný respekt.',
+            'To jde mimo mě.',
+            'Láska je pure evilness nahromaděná na jednom místě. Protože říct "miluju tě" znamená říct miluju tě víc jako všechno kolem sebe a to ruší vesmírní balanc.',
+            'Je to nepopsatelný — nejde to vyjádřit slovy. Jak se chováš k někomu, koho miluješ.',
+            'Reálně nemám ponětí.',
+            'Velký psychický a fyzický komfort.',
+            'Láska je kompromis.',
+            'Dobrý jídlo (okusuje u toho nanuka). Doplnění: Láska je, když pro tebe domov znamená osoba a ne místo.',
+            'Vztah k tomu druhýmu, mezi dvěma a musí se na něm pracovat. Nejde to popstat...Něco, co ti je blízké. ',
+            'Hodně abstraktní pojem — dá se pod tím představit hodně moc věcí. Láska je třeba k aktivitě, přírodě, čemukoliv.',
+            'Když někomu uděláš palačinku a jemu to chutná a tebe to těší.',
+            'Láska je chemikálie co smrdí jako rybina.',
+            'Krásná emoce, kterou můžeš cítit k věci nebo k člověku.',
+            'Svoboda.',
+            'Kompromis a akceptace toho druhého — musí tam ale být něco, co nedokážu popsat. Něco konzistentního.',
+            'Něco trvalého.',
+            'Krásný pocit.',
+            'Když tě ten druhý naplňuje klidem a spokojeností.',
+            'Svírání srdíčka. Vidím přítele, sevře se mi srdce a po těle se mi rozlije štěstí.',
+            'Bezpodmienečné prijatie — platí aj na sebalásku aj na lásku k inému.',
+            'Láska k mužovi,k žene, k rodičom, k náhodným ľuďom. Za každých podmienok ten človek bude stáť pri tebe.',
+            'Láska je domov.',
+            'Láska je čarodějka.',
+            'Láska je žiariaca biela guľa svetla v hrudi.',
+            'Dlouhodobý stav rozpoložení, který kloubí emoce a tělesné.',
+            'Když ti je někdo nebo něco dražší než ty sám.',
+            'The best intention in mind...nedá sa to dobre preložiť, najbližie je k tomu asi láska pre všetkých ľudí...proste vždy best intention in mind.',
+            'Niterný stav emoční naplněnosti.',
+            'Dvousečná věc...Strašně krásná věc, dokáže se dělit na určité úrovně — k lidem, k věcem...Nádherná věc — štěstí a chuť do života. Na druhou stranu i něco nemilého — deprese, problémy, ale dokáže to z toho vytáhnout balanc.',
+            'Pochopení. Akceptování někoho s vědmím těch jeho chyb. Láska je, když děláš tu nejvíc nejobyčejnější věc na světě a v nějakej moment tě přepadne myšlenka, že ten člověk je naprosto skvělý a vůbec nechápeš, že ho máš ve svém životě. Víš, že existence toho člověka tě inspiruje být lepší.',
+            'Aww...vzájemné pohodlí. Filozofický údiv a proto je to zajímavé.',
+            'Mám ji vytetovanou na těle (smích). Když se bavíš o hovnech ve vztahu a ten druhý tě stále miluje.',
+            'Všetko znáša, všetko verí, všetko dáva a všetko vydrží.',
+            'Je to starost.',
+            'Blízkosť, intimita, krásne chvíle.',
+            'Predstavím si svojho priateľa a všetky pocity k nemu a neviem to stále úplne vyjadriť. Chcem jeho zdravie a jeho úplné šťastie, aby mal ten človek najlepší život, lebo sa bojím, že ho stratím. Aby mal čo najlepší život aj keď sa ja niečoho vzdám.',
+            'Skvělý pocit...v tom ideálním případě.',
+            'Nevím, já jsem to nikdy nezažila. Nikdy jsem nebyla zamilovaná. Ale jako koncept je to zajímavé.',
+            'Péče.',
+            'Smysl života.',
+            'Naděje, léčivá, odpověď.',
+            'Láska je Bůh. Protože Bůh je láska.',
+            'Určitý napojení na toho člověka, pocit, že ti na tom druhém záleží a člověk se kterým chceš co nejvíc sdílet. ',
+            'Nie je to pocit, je to niečo, čo cítiš a prežívaš a hreje ťa to pri srdci.',
+            'Něco jako objetí — místo, kde se můžeš cítit bezpečně. Bezpečí a důvěra.',
+            'Světlo — když někoho znáš natolik, že si nedokážeš představit, že ho znát nebudeš. To co zůstane po tom, co opadne zamilovanost.',
+            'Někdo, komu můžu věřit, můžu říct cokoliv a nemusím se bát. Bolest, bez toho láska není.',
+            'Láska je pěkná chvíle s blízkýma.',
+            'Láska je všechno.',
+            'Zvláštný vztah mezi dvěma lidma, kterému rozumí jenom oni dva.',
+            'Vášeň a jakási forma commitmentu, kterou kažodenně cítíš a někomu věnuješ.',
+            'Dlouhodobě trvající emoce, psychický stav.',
+            'Když ti záleží na druhém tak, že je to víc než jenom přátelství — aby byli co nejvíc pořád šťastný a pomáháš jim maximalizovat to štěstí. Máš ten oheň v břiše.',
+            'Láska je droga.',
+            'Láska je skutečnost, která nás navrací k jednotě.',
+            'Láska je absolutní stavební kámen všeho.',
+            'Když žiješ svůj život, jenom vedle někoho, koho si vybereš...a vlastně zjistíš, že se ti vedle něho žije líp.',
+            'Když se dva lidí mají rádi.',
+            'Láska je dneska spánek.',
+            'Láska je schopnost trvale vidět dobro a odpouštět zlo.',
+            'Největší pouto mezi lidma.',
+            'Láska je, když chceme, aby byl ten druhý šťastný i na úkor nás a když nám na něm záleží víc, než na nás.',
+            'Mít rád sám sebe a být schopný žít sám se sebou ve svoji hlavě.',
+            'KISK je láska.',
+        ];
+
         // Create the application helper and add its render target to the page
-        let app = new PIXI.Application({
-            width: 800,
-            height: 800
+        const app = new PIXI.Application({
+            width: window.innerWidth - 20,
+            height: window.innerHeight - 20,
+            backgroundColor: 0xffffff
         });
         document.body.appendChild(app.view);
 
-        quotes = [
-            'Láska je borůvkové smoothie z dobře promazaného mixéru. Láska je borůvkové smoothie z dobře promazaného mixéru. Láska je borůvkové smoothie z dobře promazaného mixéru.',
-            'Láska je úděl tvůj.',
-            'Láska je tu s námi, buďme s ňou.'
-        ];
-
         const music = PIXI.sound.Sound.from('assets/music/mixkit-forest-birds-chirp-ambiance-69.ogg');
         music.loop = true;
-        music.play();
+        // music.play();
 
-        let background = PIXI.Sprite.from('assets/backgrounds/forest_upscale.jpg')
+        const background = PIXI.Sprite.from('assets/backgrounds/trojblok.png')
+        background.anchor.set(0.5, 0.5);
+        background.position.set(app.screen.width / 2, app.screen.height / 2);
         app.stage.addChild(background);
 
-        // Create the sprite and add it to the stage
-        let button = PIXI.Sprite.from('assets/buttons/button-co-je-to-laska.png');
-        button.x = 250;
-        button.y = 600;
+        const buttonText = new PIXI.Text('Co je láska?', {
+            fontFamily: 'VT323',
+            fontSize: 38,
+            fill: 0x2222DD,
+            align: 'center',
+            wordWrapWidth: app.screen.width * 0.8,
+        });
+        buttonText.anchor.set(0.5, 0.5);
+        buttonText.position.set(app.screen.width / 2, app.screen.height * 0.7);
+
+        window.onload = function () {
+            app.stage.addChild(buttonText);
+        };
+
+        let button = PIXI.Sprite.from('assets/buttons/button.png');
+        button.anchor.set(0.5, 0.5);
+        button.position.set(app.screen.width / 2, app.screen.height * 0.7);
         button.interactive = true;
         app.stage.addChild(button);
+        
 
-        let text = new PIXI.Text('Kdo ví?', {
-            fontFamily : 'Georgia', 
-            fontSize: 24,
-            fontStyle: 'italic',
-            fill : 0x000000, 
-            align : 'center',
-            wordWrap: true,
-            wordWrapWidth: 600,
-        });
-        text.anchor.set(0.5, 0.5);
-        text.position.set(400, 400);
-
-        button.on('pointerover', (event) => { 
+        button.on('pointerover', (event) => {
             button.tint = 0xDDDDDD;
         });
 
-        button.on('pointerout', (event) => { 
+        button.on('pointerout', (event) => {
             button.tint = 0xFFFFFF;
         });
 
-        button.on('pointerdown',(event) => { 
+        button.on('pointerdown', (event) => {
             text.text = quotes[Math.floor(Math.random() * quotes.length)];
-            textBG.width = text.width + 20,
-            textBG.height = text.height + 10;
         });
 
-        const textBG = new PIXI.Sprite(PIXI.Texture.WHITE);
-        textBG.width = text.width + 20,
-        textBG.height = text.height + 10;
-        textBG.anchor.set(0.5, 0.5);
-        textBG.position.set(400, 400);
+        let text = new PIXI.Text('', {
+            fontFamily: 'VT323',
+            fontSize: 36,
+            fontStyle: '',
+            fill: 0x2222DD,
+            align: 'center',
+            wordWrap: true,
+            wordWrapWidth: app.screen.width * 0.8,
+        });
+        text.anchor.set(0.5, 0.5);
+        text.position.set(app.screen.width / 2, app.screen.height * 0.5);
 
-        app.stage.addChild(textBG);
         app.stage.addChild(text);
     </script>
 </body>
