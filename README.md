@@ -1,2 +1,5 @@
 # laska
-What is love? Summer school 2022
+# What is love?
+
+The project is based on a tender questionnaire from the KISK Summer School 2022.
+
