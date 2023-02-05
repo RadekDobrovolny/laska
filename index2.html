@@ -1,0 +1,147 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Co je láska?</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+</head>
+
+<body>
+    <script>
+        WebFont.load({
+            google: {
+                families: ['VT323']
+            }
+        });
+
+        quotes = [
+            'Vplynutí jeden do druhého. Není jenom jeden a druhý — něco začne eistovat a je to jenom vaše a víte o tom jenom vy dva. Láska je Vennův diagram... přijetí navzdory.',
+            'Přizpůsobení se dvou lidí navzájem v komfortní symbióze. Spokojenost ve sladění, zájem.',
+            'Láska je vzťah samého so sebou — pocit sebeprijatia. Keď si vyriešiš seba môžeš to šíriť ďalej.',
+            'Láska je neustálá tendence kosmu porozumět si a být jedno.',
+            'Láska je něco, co přichází s časem. Hodně lidí si to plete se zamilovaností — láska je to, co zůstane. Je to souznění v různorodosti a společný růst.',
+            'Když to vydržíš do konce.',
+            'Netuším, taky bych to chtěla vědět.',
+            'Bezpodmínečné přijetí a vzájemný respekt.',
+            'To jde mimo mě.',
+            'Láska je pure evilness nahromaděná na jednom místě. Protože říct "miluju tě", znamená říct miluju tě víc, než všechno kolem sebe a to ruší vesmírní balanc.',
+            'Je to nepopsatelný — nejde to vyjádřit slovy. Jak se chováš k někomu, koho miluješ.',
+            'Reálně nemám ponětí.',
+            'Velký psychický a fyzický komfort.',
+            'Láska je kompromis.',
+            'Dobrý jídlo. *okusuje u toho nanuka* Láska je, když pro tebe domov znamená osoba a ne místo.',
+            'Vztah k tomu druhýmu, mezi dvěma a musí se na něm pracovat. Nejde to popstat... Něco, co ti je blízké.',
+            'Hodně abstraktní pojem — dá se pod tím představit hodně moc věcí. Láska je třeba k aktivitě, přírodě, čemukoliv.',
+            'Když někomu uděláš palačinku a jemu to chutná a tebe to těší.',
+            'Láska je chemikálie, co smrdí jako rybina.',
+            'Krásná emoce, kterou můžeš cítit k věci nebo k člověku.',
+            'Svoboda.',
+            'Kompromis a akceptace toho druhého — musí tam ale být něco, co nedokážu popsat. Něco konzistentního.',
+            'Něco trvalého.',
+            'Krásný pocit.',
+            'Když tě ten druhý naplňuje klidem a spokojeností.',
+            'Svírání srdíčka. Vidím přítele, sevře se mi srdce a po těle se mi rozlije štěstí.',
+            'Bezpodmienečné prijatie — platí aj na sebalásku, aj na lásku k inému.',
+            'Láska k mužovi, k žene, k rodičom, k náhodným ľuďom. Za každých podmienok ten človek bude stáť pri tebe.',
+            'Láska je domov.',
+            'Láska je čarodějka.',
+            'Láska je žiariaca biela guľa svetla v hrudi.',
+            'Dlouhodobý stav rozpoložení, který kloubí emoce a tělesné.',
+            'Když ti je někdo nebo něco dražší než ty sám.',
+            'The best intention in mind... nedá sa to dobre preložiť, najbližie je k tomu asi láska pre všetkých ľudí... proste vždy best intention in mind.',
+            'Niterný stav emoční naplněnosti.',
+            'Dvousečná věc... Strašně krásná věc, dokáže se dělit na určité úrovně — k lidem, k věcem... Nádherná věc — štěstí a chuť do života. Na druhou stranu i něco nemilého — deprese, problémy, ale dokáže to z toho vytáhnout balanc.',
+            'Pochopení. Akceptování někoho s vědmím těch jeho chyb. Láska je, když děláš tu nejvíc nejobyčejnější věc na světě a v nějakej moment tě přepadne myšlenka, že ten člověk je naprosto skvělý a vůbec nechápeš, že ho máš ve svém životě. Víš, že existence toho člověka tě inspiruje být lepší.',
+            'Aww... vzájemné pohodlí. Filozofický údiv a proto je to zajímavé.',
+            'Mám ji vytetovanou na těle. *smích* Když se bavíš o hovnech ve vztahu a ten druhý tě stále miluje.',
+            'Všetko znáša, všetko verí, všetko dáva a všetko vydrží.',
+            'Je to starost.',
+            'Blízkosť, intimita, krásne chvíle.',
+            'Predstavím si svojho priateľa a všetky pocity k nemu a neviem to stále úplne vyjadriť. Chcem jeho zdravie a jeho úplné šťastie, aby mal ten človek najlepší život, lebo sa bojím, že ho stratím. Aby mal čo najlepší život aj keď sa ja niečoho vzdám.',
+            'Skvělý pocit... v tom ideálním případě.',
+            'Nevím, já jsem to nikdy nezažila. Nikdy jsem nebyla zamilovaná. Ale jako koncept je to zajímavé.',
+            'Péče.',
+            'Smysl života.',
+            'Naděje, léčivá, odpověď.',
+            'Láska je Bůh. Protože Bůh je láska.',
+            'Určitý napojení na toho člověka. Pocit, že ti na tom druhém záleží a člověk se kterým chceš co nejvíc sdílet. ',
+            'Nie je to pocit, je to niečo, čo cítiš a prežívaš a hreje ťa to pri srdci.',
+            'Něco jako objetí — místo, kde se můžeš cítit bezpečně. Bezpečí a důvěra.',
+            'Světlo — když někoho znáš natolik, že si nedokážeš představit, že ho znát nebudeš. To co zůstane po tom, co opadne zamilovanost.',
+            'Někdo, komu můžu věřit, můžu říct cokoliv a nemusím se bát. Bolest, bez toho láska není.',
+            'Láska je pěkná chvíle s blízkýma.',
+            'Láska je všechno.',
+            'Zvláštný vztah mezi dvěma lidma, kterému rozumí jenom oni dva.',
+            'Vášeň a jakási forma commitmentu, kterou kažodenně cítíš a někomu věnuješ.',
+            'Dlouhodobě trvající emoce, psychický stav.',
+            'Když ti záleží na druhém tak, že je to víc než jenom přátelství — aby byli co nejvíc pořád šťastný a pomáháš jim maximalizovat to štěstí. Máš ten oheň v břiše.',
+            'Láska je droga.',
+            'Láska je skutečnost, která nás navrací k jednotě.',
+            'Láska je absolutní stavební kámen všeho.',
+            'Když žiješ svůj život, jenom vedle někoho, koho si vybereš... a vlastně zjistíš, že se ti vedle něho žije líp.',
+            'Když se dva lidí mají rádi.',
+            'Láska je dneska spánek.',
+            'Láska je schopnost trvale vidět dobro a odpouštět zlo.',
+            'Největší pouto mezi lidma.',
+            'Láska je, když chceme, aby byl ten druhý šťastný i na úkor nás a když nám na něm záleží víc, než na nás.',
+            'Mít rád sám sebe a být schopný žít sám se sebou ve svoji hlavě.',
+            'KISK je láska.',
+        ];
+
+        var last = 0;
+        var number = 0;
+
+        function changeLove() {
+            while (number == last) {
+                number = Math.floor(Math.random() * quotes.length);
+            }
+            last = number;
+            document.getElementById("text-block").textContent = quotes[number];
+        }
+    </script>
+
+    <style>
+        .main-block {
+            background-image: url('/assets/backgrounds/trojblok.jpg');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-size: 100%;
+            height: 700px;
+            box-shadow: 0;
+            
+        }
+
+        .top-spacer {
+            padding-top: 20%;
+        }
+
+        .button {
+            font-family: 'VT323';
+            color: #004AAD;
+        }
+
+        .text-block {
+            font-family: 'VT323';
+            box-color: #004AAD;
+            width: 60%;
+            margin: auto;
+        }
+    </style>
+
+    <div class="columns is-desktop">
+        <div class="column is-8 is-offset-2">
+            <div class="block main-block">
+                <div class="block top-spacer">
+                </div>
+                <div class="box has-text-centered text-block" id="text-block">
+                    
+                </div>
+                <div class="block has-text-centered">
+                    <button class="button is-info is-light is-responsive is-large" onclick="changeLove()">Co je láska?</button>
+                </div>
+              </div>            
+        </div>
+    </div>
+</body>
