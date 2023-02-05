@@ -125,7 +125,17 @@
 
         .button {
             font-family: 'VT323';
-            color: #004AAD;
+            color: #004AAD !important;
+            background-image: url("https://radekdobrovolny.github.io/laska/assets/buttons/button.png");
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-color: transparent !important;
+            border-color: transparent !important;
+            box-shadow: none !important;
+        }
+
+        .button:hover {
+            filter: brightness(110%);
         }
 
         .text-block {
@@ -148,9 +158,9 @@
                         
                     </div>
                     <div class="block has-text-centered">
-                        <button class="button is-large is-info is-light is-size-2-touch is-size-3-desktop is-outlined" onclick="changeLove()">Co je láska?</button>
+                        <button class="button is-size-2-touch is-size-3-desktop" onclick="changeLove()">Co je láska?</button>
                     </div>
-                </div>            
+                </div>
             </div>
         </div>
     
