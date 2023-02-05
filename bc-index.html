@@ -3,9 +3,9 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Co je láska?</title>
+    <script src="https://pixijs.download/release/pixi.min.js"></script>
+    <script src="https://unpkg.com/@pixi/sound/dist/pixi-sound.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 </head>
 
 <body>
@@ -90,58 +90,86 @@
             'KISK je láska.',
         ];
 
-        var last = 0;
-        var number = 0;
+        // Create the application helper and add its render target to the page
+        const app = new PIXI.Application({
+            width: window.innerWidth - 20,
+            height: window.innerHeight - 20,
+            backgroundColor: 0xffffff
+        });
+        document.body.appendChild(app.view);
 
-        function changeLove() {
-            while (number == last) {
-                number = Math.floor(Math.random() * quotes.length);
-            }
-            last = number;
-            document.getElementById("text-block").textContent = quotes[number];
+        const music = PIXI.sound.Sound.from('assets/music/mixkit-forest-birds-chirp-ambiance-69.ogg');
+        music.loop = true;
+        // music.play();
+
+        const background = PIXI.Sprite.from('assets/backgrounds/trojblok.png')
+        background.anchor.set(0.5, 0.5);
+        background.position.set(window.innerWidth / 2, window.innerHeight / 2);
+        app.stage.addChild(background);
+
+        const buttonText = new PIXI.Text('Co je láska?', {
+            fontFamily: 'VT323',
+            fontSize: 38,
+            fill: 0x004AAD,
+            align: 'center',
+            wordWrapWidth: window.innerWidth * 0.8,
+        });
+        buttonText.anchor.set(0.5, 0.5);
+        buttonText.position.set(window.innerWidth / 2, window.innerHeight * 0.7);
+
+        let button = PIXI.Sprite.from('assets/buttons/button.png');
+        button.anchor.set(0.5, 0.5);
+        button.position.set(window.innerWidth / 2, window.innerHeight * 0.7);
+        button.interactive = true;
+        app.stage.addChild(button);
+        
+
+        button.on('pointerover', (event) => {
+            button.tint = 0xDDDDDD;
+        });
+
+        button.on('pointerout', (event) => {
+            button.tint = 0xFFFFFF;
+        });
+
+        button.on('pointerdown', (event) => {
+            text.text = quotes[Math.floor(Math.random() * quotes.length)];
+        });
+
+        wrapWidth = window.innerWidth * 0.8;
+        if (wrapWidth > 1000) {wrapWidth = 1000};
+        let text = new PIXI.Text('', {
+            fontFamily: 'VT323',
+            fontSize: 36,
+            fontStyle: '',
+            fill: 0x004AAD,
+            align: 'center',
+            wordWrap: true,
+            wordWrapWidth: wrapWidth,
+        });
+        text.anchor.set(0.5, 0.5);
+        text.position.set(window.innerWidth / 2, window.innerHeight * 0.5);
+
+        app.stage.addChild(text);
+
+        window.onload = function () {
+            app.stage.addChild(buttonText);
+        };
+
+        window.onresize = function (event) {
+            app.width = window.innerWidth;
+            app.height = window.innerHeight;
+            background.position.set(window.innerWidth / 2, window.innerHeight / 2);
+            button.position.set(window.innerWidth / 2, window.innerHeight * 0.7);
+            buttonText.position.set(window.innerWidth / 2, window.innerHeight * 0.7);
+
+            wrapWidth = window.innerWidth * 0.8;
+            if (wrapWidth > 1000) {wrapWidth = 1000};
+            text.style.wordWrapWidth = wrapWidth;
+
+            text.position.set(window.innerWidth / 2, window.innerHeight * 0.5);
         }
     </script>
-
-    <style>
-        .main-block {
-            background-image: url('/assets/backgrounds/trojblok.jpg');
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-size: 100%;
-            height: 700px;
-            box-shadow: 0;
-            
-        }
-
-        .top-spacer {
-            padding-top: 20%;
-        }
-
-        .button {
-            font-family: 'VT323';
-            color: #004AAD;
-        }
-
-        .text-block {
-            font-family: 'VT323';
-            box-color: #004AAD;
-            width: 60%;
-            margin: auto;
-        }
-    </style>
-
-    <div class="columns is-desktop">
-        <div class="column is-8 is-offset-2">
-            <div class="block main-block">
-                <div class="block top-spacer">
-                </div>
-                <div class="box has-text-centered text-block" id="text-block">
-                    
-                </div>
-                <div class="block has-text-centered">
-                    <button class="button is-info is-light is-responsive is-large" onclick="changeLove()">Co je láska?</button>
-                </div>
-              </div>            
-        </div>
-    </div>
 </body>
+
+</html>
