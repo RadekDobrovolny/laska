@@ -103,6 +103,14 @@
     </script>
 
     <style>
+        * {
+            touch-action: manipulation;
+        }
+
+        html, body { 
+            height: 100vh; 
+        }
+
         .main-block {
             background-image: url('https://radekdobrovolny.github.io/laska/assets/backgrounds/trojblok.jpg');
             background-size: cover;
@@ -128,33 +136,32 @@
             margin: auto;
             min-height: 120px;
         }
-
-        * {
-            touch-action: manipulation;
-        }
     </style>
 
-    <div class="columns is-mobile">
-        <div class="column">
-            <div class="block main-block">
-                <div class="block top-spacer">
-                </div>
-                <div class="block is-large has-text-centered text-block" id="text-block">
-                    
-                </div>
-                <div class="block has-text-centered">
-                    <button class="button is-large is-info is-light is-size-2-touch is-size-3-desktop is-outlined" onclick="changeLove()">Co je láska?</button>
-                </div>
-              </div>            
+    <div class="container hero is-fullheight">
+        <div class="columns is-mobile">
+            <div class="column">
+                <div class="block main-block">
+                    <div class="block top-spacer">
+                    </div>
+                    <div class="block is-large has-text-centered text-block" id="text-block">
+                        
+                    </div>
+                    <div class="block has-text-centered">
+                        <button class="button is-large is-info is-light is-size-2-touch is-size-3-desktop is-outlined" onclick="changeLove()">Co je láska?</button>
+                    </div>
+                </div>            
+            </div>
         </div>
+    
+        <footer class="footer is-flex-align-items-flex-end">
+            <div class="content has-text-centered">
+            <p>
+                <strong>Láska z Letní školy KISKu 2022. </strong> ❤️ <br>
+                Lásky posbírala Lea Belejová, stránku vytvořil Radek Dobrovolný (<a href="https://sites.google.com/view/hejnice-label/label">hejnice label</a>).<br>
+                © 2022-<script>document.write(/\d{4}/.exec(Date())[0])</script>
+            </p>
+            </div>
+        </footer>
     </div>
-    <footer class="footer">
-        <div class="content has-text-centered">
-          <p>
-            <strong>Láska z Letní školy KISKu 2022. </strong> ❤️ <br>
-            Lásky posbírala Lea Belejová, stránku vytvořil Radek Dobrovolný (<a href="https://sites.google.com/view/hejnice-label/label">hejnice label</a>).<br>
-            © 2022-<script>document.write(/\d{4}/.exec(Date())[0])</script>
-          </p>
-        </div>
-      </footer>
 </body>
